@@ -1,0 +1,26 @@
+- id: 0
+  question: "From the four lines of code below, select the ones that produce a value other than zero."
+  code: |
+    2 ** 3 / 4 - 1.5
+    12 / 2 ** 3 - 0.5
+    1 * 5 // 2 ** 3
+    2 ** 4 / 4 - 4
+  options:
+    0: "Line 1 (top line)"
+    1: "Line 2"
+    2: "Line 3"
+    3: "Line 4 (bottom line)"
+  answers:
+    - 0
+    - 1
+
+- id: 1
+  question: "What do we call a program written in a human-readable programming language?"
+  code: ''
+  options:
+    0: "object code"
+    1: "source code"
+    2: "compiled output"
+    3: "machine instructions"
+  answers:
+    - 1
