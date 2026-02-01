@@ -1,0 +1,5 @@
+{% if is_correct %}
+  <span>Correct.</span>
+{% else %}
+  <span>Incorrect. Correct answer: {{ correct_labels | join(', ') }}.</span>
+{% endif %}

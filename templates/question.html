@@ -1,0 +1,50 @@
+<p>{{ question.question }}</p>
+
+{% if question.code %}
+  <pre>{{ question.code }}</pre>
+{% endif %}
+
+<form
+  hx-post="/check"
+  hx-target="#result"
+  hx-swap="innerHTML"
+>
+  <input type="hidden" name="question_index" value="{{ question_index }}" />
+
+  <div class="options">
+    {% set input_type = "checkbox" if question.answers | length > 1 else "radio" %}
+    {% for key, label in question.options.items() %}
+      <div>
+        <label>
+          <input
+            type="{{ input_type }}"
+            name="selected"
+            value="{{ key }}"
+            {% if input_type == "radio" %}required{% endif %}
+          />
+          {{ label }}
+        </label>
+      </div>
+    {% endfor %}
+  </div>
+
+  <button type="submit">Check answer</button>
+  <button
+    type="button"
+    hx-get="/previous?index={{ question_index }}"
+    hx-target="#question-card"
+    hx-swap="innerHTML"
+  >
+    Previous
+  </button>
+  <button
+    type="button"
+    hx-get="/next?index={{ question_index }}"
+    hx-target="#question-card"
+    hx-swap="innerHTML"
+  >
+    Next
+  </button>
+</form>
+
+<div id="result" class="result"></div>
