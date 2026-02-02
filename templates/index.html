@@ -52,7 +52,28 @@
         document.getElementById("stats-percent").textContent = `${percent}%`;
       }
 
+      function clearUnansweredSelection(root) {
+        const actionButton = root.querySelector("#action-button");
+        if (!actionButton || actionButton.dataset.state !== "check") {
+          return;
+        }
+        root.querySelectorAll("input[name=selected]").forEach((input) => {
+          input.checked = false;
+        });
+        actionButton.disabled = true;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const card = document.getElementById("question-card");
+        if (card) {
+          clearUnansweredSelection(card);
+        }
+      });
+
       document.body.addEventListener("htmx:afterSwap", (event) => {
+        if (event.detail.target && event.detail.target.id === "question-card") {
+          clearUnansweredSelection(event.detail.target);
+        }
         if (!event.detail.target || event.detail.target.id !== "result") {
           return;
         }

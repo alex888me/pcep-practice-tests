@@ -6,14 +6,17 @@
 
 <span id="stats-update" data-correct="{{ 1 if is_correct else 0 }}" hidden></span>
 
-<button
-  id="action-button"
-  type="button"
-  hx-get="/next?index={{ question_index }}"
-  hx-target="#question-card"
-  hx-swap="innerHTML"
-  hx-swap-oob="true"
-  data-state="next"
->
-  Next
-</button>
+{% if oob_next %}
+  <button
+    id="action-button"
+    type="button"
+    hx-get="/next?index={{ question_index }}"
+    hx-target="#question-card"
+    hx-swap="innerHTML"
+    hx-swap-oob="true"
+    data-state="next"
+    {% if is_last %}disabled{% endif %}
+  >
+    Next
+  </button>
+{% endif %}

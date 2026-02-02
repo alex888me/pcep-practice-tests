@@ -9,6 +9,7 @@
   hx-target="#result"
   hx-swap="innerHTML"
   hx-on="change: if (event.target.name === 'selected') { const btn = this.querySelector('#action-button'); if (btn && btn.dataset.state === 'check') { const anyChecked = this.querySelectorAll('input[name=selected]:checked').length > 0; btn.disabled = !anyChecked; } }"
+  autocomplete="off"
 >
   <input type="hidden" name="question_index" value="{{ question_index }}" />
 
@@ -21,7 +22,8 @@
             type="{{ input_type }}"
             name="selected"
             value="{{ key }}"
-            {% if input_type == "radio" %}required{% endif %}
+            {% if answered and key in answered.selected %}checked{% endif %}
+            {% if answered %}disabled{% elif input_type == "radio" %}required{% endif %}
           />
           {{ label }}
         </label>
@@ -34,12 +36,31 @@
     hx-get="/previous?index={{ question_index }}"
     hx-target="#question-card"
     hx-swap="innerHTML"
+    {% if is_first %}disabled{% endif %}
   >
     Previous
   </button>
-  <button id="action-button" type="submit" disabled data-state="check">
-    Check answer
-  </button>
+  {% if answered %}
+    <button
+      id="action-button"
+      type="button"
+      hx-get="/next?index={{ question_index }}"
+      hx-target="#question-card"
+      hx-swap="innerHTML"
+      data-state="next"
+      {% if is_last %}disabled{% endif %}
+    >
+      Next
+    </button>
+  {% else %}
+    <button id="action-button" type="submit" disabled data-state="check">
+      Check answer
+    </button>
+  {% endif %}
 </form>
 
-<div id="result" class="result"></div>
+<div id="result" class="result">
+  {% if answered %}
+    {% include "result.html" %}
+  {% endif %}
+</div>
