@@ -28,9 +28,48 @@
   </head>
   <body>
     <h1>PCEP Quiz</h1>
+    <p>
+      Score:
+      <span id="stats-total">0</span> answered,
+      <span id="stats-correct">0</span> correct
+      (<span id="stats-percent">0%</span>)
+    </p>
 
     <div id="question-card">
       {% include "question.html" %}
     </div>
+
+    <script>
+      let totalAnswered = 0;
+      let correctAnswered = 0;
+
+      function updateStats() {
+        const percent = totalAnswered
+          ? Math.round((correctAnswered / totalAnswered) * 100)
+          : 0;
+        document.getElementById("stats-total").textContent = totalAnswered;
+        document.getElementById("stats-correct").textContent = correctAnswered;
+        document.getElementById("stats-percent").textContent = `${percent}%`;
+      }
+
+      document.body.addEventListener("htmx:afterSwap", (event) => {
+        if (!event.detail.target || event.detail.target.id !== "result") {
+          return;
+        }
+
+        const marker = document.getElementById("stats-update");
+        if (!marker) {
+          return;
+        }
+
+        totalAnswered += 1;
+        if (marker.dataset.correct === "1") {
+          correctAnswered += 1;
+        }
+
+        updateStats();
+        marker.remove();
+      });
+    </script>
   </body>
 </html>

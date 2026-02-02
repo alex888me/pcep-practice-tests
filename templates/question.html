@@ -8,6 +8,7 @@
   hx-post="/check"
   hx-target="#result"
   hx-swap="innerHTML"
+  hx-on="change: if (event.target.name === 'selected') { const btn = this.querySelector('#action-button'); if (btn && btn.dataset.state === 'check') { const anyChecked = this.querySelectorAll('input[name=selected]:checked').length > 0; btn.disabled = !anyChecked; } }"
 >
   <input type="hidden" name="question_index" value="{{ question_index }}" />
 
@@ -28,7 +29,6 @@
     {% endfor %}
   </div>
 
-  <button type="submit">Check answer</button>
   <button
     type="button"
     hx-get="/previous?index={{ question_index }}"
@@ -37,13 +37,8 @@
   >
     Previous
   </button>
-  <button
-    type="button"
-    hx-get="/next?index={{ question_index }}"
-    hx-target="#question-card"
-    hx-swap="innerHTML"
-  >
-    Next
+  <button id="action-button" type="submit" disabled data-state="check">
+    Check answer
   </button>
 </form>
 

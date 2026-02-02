@@ -52,6 +52,7 @@ async def check_answer(
             "request": request,
             "is_correct": is_correct,
             "correct_labels": correct_labels,
+            "question_index": question_index,
         },
     )
 
