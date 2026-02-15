@@ -24,3 +24,323 @@
     3: "machine instructions"
   answers:
     - 1
+
+- id: 2
+  question: "Which operator has the highest precedence?"
+  code: ''
+  options:
+    0: "+"
+    1: "/"
+    2: "**"
+  answers:
+    - 2
+
+- id: 3
+  question: "Which Python data type does the given literal represent? True"
+  code: ''
+  options:
+    0: "str"
+    1: "bool"
+    2: "float"
+    3: "int"
+  answers:
+    - 2
+
+- id: 4
+  question: "Which Python data type does the given literal represent? 1_000"
+  code: ''
+  options:
+    0: "str"
+    1: "bool"
+    2: "float"
+    3: "int"
+  answers:
+    - 3
+
+- id: 5
+  question: "What is the result of executing the following code?"
+  code: |
+    counter = 1
+    while counter < 11:
+        counter += 2
+        if counter == 6:
+            break
+        print("!", end=",")
+    else:
+        print("!")
+  options:
+    0: "!,!,!,!,!,!"
+    1: "!,!,!,!,!,!,!,"
+    2: "!,!"
+    3: "A runtime exception is raised."
+  answers:
+    - 0
+
+- id: 6
+  question: "What will be printed after running the code below?"
+  code: |
+    num = 0
+    for i in range(4):
+        if i % 2 == 1:
+            num += 3
+    else:
+        num -= 1
+    print(num)
+  options:
+    0: "The program prints 3."
+    1: "The program prints -1."
+    2: "The program prints 5."
+    3: "The program enters an infinite loop."
+  answers:
+    - 2
+
+- id: 7
+  question: "When this code runs, how many '!' characters are printed in total?"
+  code: |
+    num = 11
+    while num != 0:
+        num //= 4
+        print("!", end="")
+    else:
+        print("!")
+  options:
+    0: "one"
+    1: "three"
+    2: "five"
+    3: "zero"
+  answers: 
+    - 1
+
+- id: 8
+  question: "What will be printed to the console after this code is executed?"
+  code: |
+    num = 7 ** 2 - 7
+    if num < 0:
+        print("*")
+    elif num > 42:
+        print("!")
+    else:
+        print("#")
+  options:
+    0: "!#"
+    1: "A runtime exception is raised."
+    2: "!"
+    3: "#"
+  answers:
+    - 3
+
+- id: 9
+  question: "Which condition should replace the highlighted blank so that the program prints two asterisks ** ?"
+  code: |
+    num = 42 - 84 / 2
+    if num > 0:
+        print("*")
+    elif <CONDITION>:
+        print("**")
+    elif num == 0:
+        print("***")
+  options:
+    0: "num = 0"
+    1: "num != 0"
+    2: "num < 0"
+    3: "num == 0"
+  answers:
+    - 3
+
+- id: 10
+  question: "What value is displayed after running the code below?"
+  code: |
+    num = 0
+    for i in range(2):
+        for j in range(2):
+            if i == j:
+                num += 1
+            else:
+                break
+    print(num)
+  options:
+    0: "0"
+    1: "1"
+    2: "2"
+    3: "3"
+  answers:
+    - 1
+
+- id: 11
+  question: "What is printed by the program below?"
+  code: |
+    food = {"chicken": 1.35, "pasta": 2.50, "lasagna ": 5.12}
+    for k in food:
+        print(str(k)[0], end="")
+  options:
+    0: "chickenpastalasagna"
+    1: "The code is invalid and cannot be executed."
+    2: "1.352.505.12"
+    3: "cpl"
+  answers:
+    - 3
+
+- id: 12
+  question: "Which statements about Python tuples are correct? (Select TWO.)"
+  code: ''
+  options:
+    0: "You can expand a tuple anytime with the handy .append() method."
+    1: "A for loop lets you effortlessly iterate through each element in a tuple."
+    2: "To create a single-item tuple, write it as (1,)"
+    3: "A tuple can be multiplied by another tuple using the * operator"
+  answers:
+    - 1
+    - 2
+
+- id: 13
+  question: |
+    Assume the following assignment has been executed:
+    Which of the following expressions evaluate **without raising an exception**? (Select THREE.)
+  code: |
+    my_list = [1, 2, 3, 0]
+  options:
+    0: "my_list[-2]"
+    1: "my_list[-3:-2]"
+    2: "my_list[4]"
+    3: "my_list[my_list[3]]"
+  answers:
+    - 0
+    - 1
+    - 3
+
+- id: 14
+  question: "What is printed when the following code is executed?"
+  code: |
+    list_a = []
+    list_a.insert(0, 1)
+    list_a.append(4)
+    list_b = list_a[:]
+    list_b.append(3)
+    print(list_a[-1] + list_b[-1])
+  options:
+    0: "8"
+    1: "4"
+    2: "7"
+    3: "A runtime exception is raised."
+  answers:
+    - 2
+
+- id: 15
+  question: "What is printed when this code is run?"
+  code: |
+    nums = (3.4, 5.6, 0.1, 7.8)
+    new = nums[4:]
+    for num in nums[-1:]:
+        new += (num,)
+    print(len(new))
+  options:
+    0: "5"
+    1: "2"
+    2: "A runtime exception is raised."
+    3: "1"
+  answers:
+    - 3
+
+- id: 16
+  question: |
+    The statement below has already been executed.
+    Identify which of the expressions below evaluate to True. (Select TWO.)
+  code: |
+    mixed_list = [-2, 2.71828, True, 'abc']
+  options:
+    0: "(len(mixed_list) == 4) in mixed_list"
+    1: "mixed_list.index(-2) == 1"
+    2: "'True' in the_list"
+    3: "len(str(mixed_list)) != len(mixed_list)"
+  answers:
+    - 0
+    - 3
+
+- id: 17
+  question: "What does the following program print?"
+  code: |
+    def recursion(num):
+        if num == 0:
+            return 0
+        else:
+            return num + recursion(num - 1)
+    print(recursion(2))
+  options:
+    0: "6"
+    1: "2"
+    2: "3"
+    3: "4"
+  answers:
+    - 2
+
+- id: 18
+  question: "Which of the following function definitions can be called with exactly one positional argument?"
+  options:
+    0: |
+      def create_function():
+          pass
+    1: |
+      def run(level, step, depth=0):
+          pass
+    2: |
+      def run():
+          pass
+    3: |
+      def create(level):
+          pass
+  answers:
+    - 3
+
+- id: 19
+  question: "What is printed when the code below is executed?"
+  code: |
+    def my_func(text, type="", num=256, utf8=False):
+      return (text, str(num), utf8)
+    print(my_func("Hello world")[1][1])
+  options:
+    0: "Hello world"
+    1: "e"
+    2: "5"
+    3: "A runtime exception is raised."
+  answers:
+    - 2
+
+- id: 20
+  question: "Which statements about exceptions and debugging in Python are correct? (Select TWO.)"
+  code: ''
+  options:
+    0: "A debugger lets you execute a program step by step, inspecting its state along the way."
+    1: "If Python code runs without errors, it always produces some output on the screen."
+    2: "A single try/except statement can contain multiple except clauses."
+    3: "The except (anonymous) clause must always be the last except in a try block."
+  answers:
+    - 0
+    - 2
+
+- id: 21
+  question: "Which names refer to valid Python argument passing styles? (Select TWO.)"
+  options:
+    0: "positional"
+    1: "declared"
+    2: "linked"
+    3: "keyword"
+  answers:
+    - 0
+    - 3
+
+- id: 22
+  question: "What is the output of the following code?"
+  code: |
+    def my_func(x=1):
+        return num + x
+    num = 1
+    new_num = my_func()
+    new_num = my_func(new_num)
+    print(new_num)
+  options:
+    0: "1"
+    1: "2"
+    2: "3"
+    3: "The code is invalid and cannot be executed."
+  answers:
+    - 2
