@@ -1,10 +1,15 @@
-{% if is_correct %}
-  <span>Correct.</span>
+{% set resolved_is_correct = is_correct if is_correct is defined else answered.is_correct %}
+{% set resolved_correct_labels = correct_labels if correct_labels is defined else answered.correct_labels %}
+
+{% if resolved_is_correct %}
+  <span>Correct. Correct answer: {{ resolved_correct_labels | join(', ') }}.</span>
 {% else %}
-  <span>Incorrect. Correct answer: {{ correct_labels | join(', ') }}.</span>
+  <span>Incorrect. Correct answer: {{ resolved_correct_labels | join(', ') }}.</span>
 {% endif %}
 
-<span id="stats-update" data-correct="{{ 1 if is_correct else 0 }}" hidden></span>
+{% if oob_next %}
+  <span id="stats-update" data-correct="{{ 1 if resolved_is_correct else 0 }}" hidden></span>
+{% endif %}
 
 {% if oob_next %}
   <button
